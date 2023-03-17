@@ -1,6 +1,8 @@
 # Oak-Form-Data
 This repository is intended to solve the encoding/parsing of the FormData in Oak Deno.
 
+The issue was addresed in https://github.com/oakserver/oak/issues/400
+
 Run `deno run ./DenoServer.js` and it will show a correct parsing of FormData in every browser.
 
 Instead, `deno run ./OakServer.js` would send the FormData, but it is not correctly parsed for web browsers. 
