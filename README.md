@@ -3,8 +3,8 @@ This repository is intended to solve the encoding/parsing of the FormData in Oak
 
 The issue was described in https://github.com/oakserver/oak/issues/400
 
-Run `deno run ./DenoServer.js` and it will show a correct parsing of FormData in every browser.
+To check how FormData works fine in Deno, use `deno run ./DenoServer.js` and open localhost:8000 in the browser. It will show the response parsed as FormData correctly.
 
-Instead, `deno run ./OakServer.js` would send the FormData, but it is not correctly parsed for web browsers. 
+Instead, `deno run ./OakServer.js` sends the FormData, but for some reason web browser can't handle. Firefox logs the error: `TypeError: Could not parse content as FormData` and in Chrome says: `TypeError: Invalid MIME type`.
 
-If you use `curl -X POST http://localhost:8000/formData` it will retrieve the FormData using the ./DenoServer, and also the ./OakServer.js.
+In any case, `curl -X POST http://localhost:8000/formData` will retrieve the FormData using `./DenoServer`, and also `./OakServer.js`.
