@@ -1,7 +1,6 @@
 # Oak-Form-Data
-This repository is intended to solve the actual bug in Oak when using FormData as a response.
 
-The issue was described in https://github.com/oakserver/oak/issues/400
+The issue/bug was described in https://github.com/oakserver/oak/issues/400
 
 To check how FormData works fine in Deno, use `deno run ./DenoServer.js` and open localhost:8000 in the browser. It will show the response parsed as FormData correctly.
 
