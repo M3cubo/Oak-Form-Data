@@ -1,5 +1,5 @@
 # Oak-Form-Data
-This repository is intended to solve the encoding/parsing of the FormData in Oak Deno.
+This repository is intended to solve the actual bug in Oak when using FormData as a response.
 
 The issue was described in https://github.com/oakserver/oak/issues/400
 
