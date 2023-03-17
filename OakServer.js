@@ -13,7 +13,7 @@ app.addEventListener('error', (event) => {
   console.log("🚨 " + event.error);
 });
 
-myRouter.get('/', async (ctx) => {
+myRouter.get('/', (ctx) => {
 
   ctx.response.body = new TextEncoder().encode(`
   <!DOCTYPE html>
@@ -42,7 +42,7 @@ myRouter.get('/', async (ctx) => {
 
 });
 
-myRouter.post('/formdata', async (ctx) => {
+myRouter.post('/formdata', (ctx) => {
 
   const data = new FormData();
   data.append("string", "Hi");

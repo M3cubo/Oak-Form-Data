@@ -1,6 +1,6 @@
 // Start listening on port 8080 of localhost.
-const server = Deno.listen({ port: 8000 });
-console.log(`HTTP webserver running.  Access it at:  http://localhost:8000/`);
+const server = Deno.listen({ port: 9000 });
+console.log(`HTTP webserver running.  Access it at:  http://localhost:9000/`);
 
 // Connections to the server will be yielded up as an async iterable.
 for await (const conn of server) {
@@ -20,7 +20,7 @@ async function serveHttp(conn) {
     
     let body = undefined;
 
-    if (requestEvent.request.method === "GET" && requestEvent.request.url === "http://localhost:8000/") {
+    if (requestEvent.request.method === "GET" && requestEvent.request.url === "http://localhost:9000/") {
         body = new TextEncoder().encode(`
           <!DOCTYPE html>
           <html>
@@ -29,10 +29,10 @@ async function serveHttp(conn) {
               <title>Test</title>
             </head>
             <body>
-            <h1>Deno std: Receive FormData</h1>
+            <h1>🦕 Deno std: Receive FormData</h1>
             <script>
             let formData = new FormData();  
-            fetch('http://localhost:8000/formData', { 
+            fetch('http://localhost:9000/formData', { 
                 method: 'POST',
                 body: formData,
             })
@@ -43,20 +43,22 @@ async function serveHttp(conn) {
           </html>
         `);
     }
-    else if (requestEvent.request.method === "POST" && requestEvent.request.url === "http://localhost:8000/formData") {
+    else if (requestEvent.request.method === "POST" && requestEvent.request.url === "http://localhost:9000/formData") {
         
         console.log("/formData");
 
+        const videoFile = await Deno.readFile(`${Deno.cwd()}/files/Film.mp4`);
+        const blob = new Blob([videoFile], { type: "video/mp4" });
+
         const data = new FormData();
         data.append("string", "Hi");
+        data.append("video", blob);
         data.append("blob", new Blob(['<b>Bye</b>'], { type: "text/xml" }));
         requestEvent.respondWith(new Response(data));
         return;
         
     }
     else {
-        // The native HTTP server uses the web standard `Request` and `Response`
-        // objects.
         body = `Your user-agent is:\n\n${
             requestEvent.request.headers.get("user-agent") ?? "Unknown"
         }`;
